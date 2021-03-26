@@ -1,7 +1,7 @@
 package com.connaissances.services.config;
 
-import com.colistransfert.services.security.*;
-import com.colistransfert.services.security.jwt.*;
+import com.connaissances.services.security.*;
+import com.connaissances.services.security.jwt.*;
 
 import com.connaissances.services.security.AuthoritiesConstants;
 import com.connaissances.services.security.jwt.JWTConfigurer;

@@ -7,7 +7,7 @@ import com.connaissances.services.service.MailService;
 import com.connaissances.services.service.UserService;
 import com.connaissances.services.service.dto.PasswordChangeDTO;
 import com.connaissances.services.service.dto.UserDTO;
-import com.colistransfert.services.web.rest.errors.*;
+import com.connaissances.services.web.rest.errors.*;
 import com.connaissances.services.web.rest.vm.KeyAndPasswordVM;
 import com.connaissances.services.web.rest.vm.ManagedUserVM;
 
