@@ -49,9 +49,27 @@ public class  JdbcBasedCategorieRepository implements CategorieRepository {
     }
 
     public Categorie findById(int idCat) {
-        for (Categorie c: listGlobalCategories) {
-            if(c.getId() == idCat) return c;
+        String query = "SELECT id, libelle FROM categorie where id="+idCat;
+
+        try {
+            Connection connection = dataSource.createConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query) ;
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String libelle = rs.getString("libelle");
+                Categorie cat = new Categorie( id, libelle);
+                return cat;
+            }
+            return new Categorie();
+
         }
-        return null;
+        catch (SQLException e) {
+            return new Categorie();
+        }
+        catch (Exception ex){
+            return new Categorie();
+        }
     }
 }

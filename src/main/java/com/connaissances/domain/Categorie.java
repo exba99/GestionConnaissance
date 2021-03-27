@@ -10,6 +10,9 @@ public class Categorie {
         this.libelle = libelle;
     }
 
+    public Categorie() {;
+    }
+
     public int getId() {
         return id;
     }
