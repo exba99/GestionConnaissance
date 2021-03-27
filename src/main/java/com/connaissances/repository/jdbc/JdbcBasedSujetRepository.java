@@ -20,7 +20,7 @@ public class JdbcBasedSujetRepository implements SujetRepository {
     }
     List<Sujet> listGlobalSujets = null;
     public Sujet[] getAllByRedacteur(Utilisateur redacteur) {
-        String query = "SELECT s.id as idSujet, s.titre as titreSujet, s.description as descSujet, s.datePublication as dateSujet, s.statut as statutSujet, c.id as idCat, c.libelle as libelleCat, r.id as idRedacteur, r.nomPrenom as nomComplet, r.profil as profil, m.id as idMoniteur, m.nomPrenom as nomCompletMoniteur  FROM sujet s, categorie c, utilisateur r, utilisateur m where s.categorie=c.id AND s.moniteur=m.id AND s.redacteur="+redacteur.getId();
+        String query = "SELECT s.id as idSujet, s.titre as titreSujet, s.description as descSujet, s.datePublication as dateSujet, s.statut as statutSujet, c.id as idCat, c.libelle as libelleCat, m.id as idMoniteur, m.nomPrenom as nomCompletMoniteur  FROM sujet s, categorie c, utilisateur m where s.categorie=c.id AND s.moniteur=m.id AND s.redacteur="+redacteur.getId();
         List<Sujet> sujets = new ArrayList<Sujet>();
 
         try {
@@ -35,9 +35,8 @@ public class JdbcBasedSujetRepository implements SujetRepository {
                 String datePublication = rs.getString("dateSujet");
                 String statut = rs.getString("statutSujet");
                 Categorie cat = new Categorie( rs.getInt("idCat"), rs.getString("libelleCat"));
-                Utilisateur red = new Utilisateur( rs.getInt("idRedacteur"), rs.getString("nomComplet"),rs.getString("profil"), null, null, null, true, null);
                 Utilisateur moniteur = new Utilisateur( rs.getInt("idMoniteur"), rs.getString("nomCompletMoniteur"),null, null, null, null, true, null);
-                Sujet sujet = new Sujet(id, titre, description, datePublication, statut, cat, moniteur, red);
+                Sujet sujet = new Sujet(id, titre, description, datePublication, statut, cat, moniteur, redacteur);
                 sujets.add(sujet);
             }
             listGlobalSujets = sujets;
